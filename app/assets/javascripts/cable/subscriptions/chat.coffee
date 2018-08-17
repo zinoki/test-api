@@ -16,3 +16,9 @@ App.cable.subscriptions.create { channel: "ChatChannel", room: "Best Room" },
       <span class="body">#{data["body"]}</span>
     </article>
     """
+
+App.chatChannel = App.cable.subscriptions.create { channel: "ChatChannel", room: "Best Room" },
+  received: (data) ->
+    # data => { sent_by: "Paul", body: "This is a cool chat app." }
+
+App.chatChannel.send({ sent_by: "Paul", body: "This is a cool chat app." })
